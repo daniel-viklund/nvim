@@ -369,7 +369,7 @@ do
 
   vim.pack.add { 'https://github.com/akinsho/toggleterm.nvim' }
   require('toggleterm').setup {
-    open_mapping = [[<leader>t]],
+    open_mapping = [[\]],
     direction = 'tab',
     float_opts = {
       border = 'curved',
