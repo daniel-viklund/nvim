@@ -16,7 +16,6 @@ vim.pack.add {
   'https://github.com/Cliffback/netcoredbg-macOS-arm64.nvim',
 }
 
-
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = 'Debug: Start/Continue' })
 vim.keymap.set('n', '<F1>', function() require('dap').step_into() end, { desc = 'Debug: Step Into' })
@@ -51,23 +50,81 @@ require('mason-nvim-dap').setup {
 -- For more information, see |:help nvim-dap-ui|
 ---@diagnostic disable-next-line: missing-fields
 dapui.setup {
-  -- Set icons to characters that are more likely to work in every terminal.
-  --    Feel free to remove or use ones that you like more! :)
-  --    Don't feel like these are good choices.
-  icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
-  ---@diagnostic disable-next-line: missing-fields
   controls = {
+    element = 'repl',
+    enabled = true,
     icons = {
-      pause = '⏸',
-      play = '▶',
-      step_into = '⏎',
-      step_over = '⏭',
-      step_out = '⏮',
-      step_back = 'b',
-      run_last = '▶▶',
-      terminate = '⏹',
-      disconnect = '⏏',
+      disconnect = '',
+      pause = '',
+      play = '',
+      run_last = '',
+      step_back = '',
+      step_into = '',
+      step_out = '',
+      step_over = '',
+      terminate = '',
     },
+  },
+  element_mappings = {},
+  expand_lines = true,
+  floating = {
+    border = 'single',
+    mappings = {
+      close = { 'q', '<Esc>' },
+    },
+  },
+  force_buffers = true,
+  icons = {
+    collapsed = '',
+    current_frame = '',
+    expanded = '',
+  },
+  layouts = {
+    {
+      elements = {
+        {
+          id = 'scopes',
+          size = 0.25,
+        },
+        {
+          id = 'breakpoints',
+          size = 0.25,
+        },
+        {
+          id = 'stacks',
+          size = 0.25,
+        },
+        {
+          id = 'watches',
+          size = 0.25,
+        },
+      },
+      position = 'left',
+      size = 40,
+    },
+    {
+      elements = { {
+        id = 'repl',
+        size = 0.5,
+      }, {
+        id = 'console',
+        size = 0.5,
+      } },
+      position = 'bottom',
+      size = 10,
+    },
+  },
+  mappings = {
+    edit = 'e',
+    expand = { '<CR>', '<2-LeftMouse>' },
+    open = 'o',
+    remove = 'd',
+    repl = 'r',
+    toggle = 't',
+  },
+  render = {
+    indent = 1,
+    max_value_lines = 100,
   },
 }
 
@@ -97,4 +154,4 @@ require('dap-go').setup {
 }
 
 -- important last hehe
-require('netcoredbg-macOS-arm64').setup(require('dap'))
+require('netcoredbg-macOS-arm64').setup(require 'dap')
