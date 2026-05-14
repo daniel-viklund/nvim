@@ -13,7 +13,7 @@ vim.pack.add {
   'https://github.com/mason-org/mason.nvim',
   'https://github.com/jay-babu/mason-nvim-dap.nvim',
   'https://github.com/leoluz/nvim-dap-go',
-  'https://github.com/Cliffback/netcoredbg-macOS-arm64.nvim'
+  'https://github.com/Cliffback/netcoredbg-macOS-arm64.nvim',
 }
 
 
