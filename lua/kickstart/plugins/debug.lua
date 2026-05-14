@@ -16,7 +16,6 @@ vim.pack.add {
   'https://github.com/Cliffback/netcoredbg-macOS-arm64.nvim'
 }
 
-require('netcoredbg-macOS-arm64').setup(require('dap'))
 
 -- Basic debugging keymaps, feel free to change to your liking!
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end, { desc = 'Debug: Start/Continue' })
@@ -96,3 +95,6 @@ require('dap-go').setup {
     detached = vim.fn.has 'win32' == 0,
   },
 }
+
+-- important last hehe
+require('netcoredbg-macOS-arm64').setup(require('dap'))
