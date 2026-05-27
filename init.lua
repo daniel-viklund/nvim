@@ -496,16 +496,37 @@ do
   -- NOTE: You can install multiple plugins at once
   vim.pack.add(telescope_plugins)
 
+  local function telescope_open_multi(bufnr)
+    local actions = require 'telescope.actions'
+    local actions_state = require 'telescope.actions.state'
+    local single_selection = actions_state.get_selected_entry()
+    local multi_selection = actions_state.get_current_picker(bufnr):get_multi_selection()
+    if not vim.tbl_isempty(multi_selection) then
+      actions.close(bufnr)
+      for _, file in pairs(multi_selection) do
+        if file.path ~= nil then vim.cmd(string.format('edit %s', file.path)) end
+      end
+      vim.cmd(string.format('edit %s', single_selection.path))
+    else
+      actions.select_default(bufnr)
+    end
+  end
+
   -- See `:help telescope` and `:help telescope.setup()`
   require('telescope').setup {
     -- You can put your default mappings / updates / etc. in here
     --  All the info you're looking for is in `:help telescope.setup()`
     --
-    -- defaults = {
-    --   mappings = {
-    --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-    --   },
-    -- },
+    defaults = {
+      mappings = {
+        i = {
+          ['<CR>'] = telescope_open_multi,
+        },
+        n = {
+          ['<CR>'] = telescope_open_multi,
+        },
+      },
+    },
     -- pickers = {}
     extensions = {
       ['ui-select'] = { require('telescope.themes').get_dropdown() },
@@ -710,8 +731,17 @@ do
     --
     -- But for many setups, the LSP (`ts_ls`) will work just fine
     ts_ls = {},
+    angularls = {},
 
     stylua = {}, -- Used to format Lua code
+    cssls = {
+      settings = {
+        css = { validate = true },
+        scss = { validate = true },
+        less = { validate = true },
+      },
+    },
+    html = {},
 
     -- Special Lua Config, as recommended by neovim help docs
     lua_ls = {
@@ -756,12 +786,12 @@ do
   }
 
   -- Automatically install LSPs and related tools to stdpath for Neovim
-  require("mason").setup({
+  require('mason').setup {
     registries = {
-        "github:mason-org/mason-registry",
-        "github:Crashdummyy/mason-registry",
+      'github:mason-org/mason-registry',
+      'github:Crashdummyy/mason-registry',
     },
-})
+  }
 
   -- Ensure the servers and tools above are installed
   --
