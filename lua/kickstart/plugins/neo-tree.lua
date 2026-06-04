@@ -17,6 +17,7 @@ vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'NeoTree to
 
 require('neo-tree').setup {
   filesystem = {
+    use_libuv_file_watcher = true,
     window = {
       mappings = {
         -- ['<leader>e'] = 'close_window',
