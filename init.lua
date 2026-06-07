@@ -158,6 +158,10 @@ do
   vim.o.list = true
   vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+  vim.opt.expandtab = false -- use real tabs, not spaces
+  vim.opt.tabstop = 4 -- how wide a tab appears
+  vim.opt.shiftwidth = 4 -- how wide >> and << indent
+
   -- Preview substitutions live, as you type!
   vim.o.inccommand = 'split'
 
@@ -720,13 +724,14 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    clangd = {},
+    clangd = {
+      on_init = function(client) client.server_capabilities.documentFormattingProvider = false end,
+    },
     -- gopls = {},
     pyright = {},
     rust_analyzer = {},
     roslyn = {},
     emmet_language_server = {},
-    clangd = {},
     cmake = {},
 
     --
@@ -843,6 +848,8 @@ do
     },
     -- You can also specify external formatters in here.
     formatters_by_ft = {
+      c = { 'clang_format' },
+      cpp = { 'clang_format' },
       -- rust = { 'rustfmt' },
       -- Conform can also run multiple formatters sequentially
       -- python = { "isort", "black" },
