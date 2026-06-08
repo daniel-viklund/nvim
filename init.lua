@@ -743,6 +743,7 @@ do
     angularls = {},
 
     stylua = {}, -- Used to format Lua code
+    jsonls = {},
     cssls = {
       settings = {
         css = { validate = true },
