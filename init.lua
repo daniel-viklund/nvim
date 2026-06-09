@@ -157,6 +157,8 @@ do
   --   and `:help lua-guide-options`
   vim.o.list = true
   vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  vim.opt.number = true
+  vim.opt.relativenumber = true
 
   vim.opt.expandtab = false -- use real tabs, not spaces
   vim.opt.tabstop = 4 -- how wide a tab appears
@@ -411,7 +413,9 @@ do
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
   vim.pack.add { 'https://github.com/ember-theme/nvim' }
-  vim.cmd.colorscheme 'ember'
+  vim.pack.add {'https://github.com/barrettruth/midnight.nvim' }
+  -- vim.cmd.colorscheme 'ember'
+  vim.cmd.colorscheme 'midnight'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
