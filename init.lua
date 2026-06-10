@@ -731,7 +731,7 @@ do
     clangd = {
       on_init = function(client) client.server_capabilities.documentFormattingProvider = false end,
     },
-    -- gopls = {},
+    gopls = {},
     pyright = {},
     rust_analyzer = {},
     roslyn = {},
