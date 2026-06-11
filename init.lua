@@ -737,6 +737,7 @@ do
     roslyn = {},
     emmet_language_server = {},
     cmake = {},
+    glsl_analyzer = {},
 
     --
     -- Some languages (like typescript) have entire language plugins that can be useful:
