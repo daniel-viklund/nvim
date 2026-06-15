@@ -16,5 +16,5 @@ vim.keymap.set('n', '<leader>bla', function()
   end
 end)
 
-vim.keymap.set('v', '<', '<gv')
-vim.keymap.set('v', '>', '>gv')
+vim.keymap.set('x', '<', '<gv')
+vim.keymap.set('x', '>', '>gv')
