@@ -7,7 +7,7 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = '' },
-    section_separators = { left = '', right = '' },  -- powerline arrows; needs a Nerd Font
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -20,37 +20,33 @@ require('lualine').setup {
       statusline = 1000,
       tabline = 1000,
       winbar = 1000,
-      refresh_time = 16, -- ~60fps
+      refresh_time = 16,
       events = {
-        'WinEnter',
-        'BufEnter',
-        'BufWritePost',
-        'SessionLoadPost',
-        'FileChangedShellPost',
-        'VimResized',
-        'Filetype',
-        'CursorMoved',
-        'CursorMovedI',
-        'ModeChanged',
+        'WinEnter', 'BufEnter', 'BufWritePost', 'SessionLoadPost',
+        'FileChangedShellPost', 'VimResized', 'Filetype',
+        'CursorMoved', 'CursorMovedI', 'ModeChanged',
       },
     }
   },
 
-  -- bottom is now empty
+  -- bottom empty
   sections = {},
   inactive_sections = {},
 
-  -- everything lives at the top
-  tabline = {
+  -- LEAVE THIS EMPTY so bufferline keeps the tabline
+  tabline = {},
+
+  -- lualine info goes here, just under bufferline
+  winbar = {
     lualine_a = { 'mode' },
     lualine_b = { 'branch', 'diff' },
     lualine_c = {
-      { 'filename', path = 1 },                          -- 0=name, 1=relative, 3=absolute
+      { 'filename', path = 1 },
       { 'diagnostics', sources = { 'nvim_lsp' } },
     },
     lualine_x = {
-      { 'searchcount', maxcount = 999 },                 -- live / match count
-      { 'selectioncount' },                              -- chars/lines in visual mode
+      { 'searchcount', maxcount = 999 },
+      { 'selectioncount' },
       'encoding',
       'fileformat',
       'filetype',
@@ -62,10 +58,14 @@ require('lualine').setup {
     },
   },
 
-  winbar = {},
-  inactive_winbar = {},
+  -- minimal info on unfocused splits
+  inactive_winbar = {
+    lualine_c = { { 'filename', path = 1 } },
+    lualine_x = { 'location' },
+  },
+
   extensions = {}
 }
 
--- hide the empty bottom statusline bar
+-- remove the empty bottom statusline bar
 vim.opt.laststatus = 0
