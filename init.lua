@@ -414,8 +414,10 @@ do
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
   vim.pack.add { 'https://github.com/ember-theme/nvim' }
   vim.pack.add {'https://github.com/barrettruth/midnight.nvim' }
+  vim.pack.add {'https://github.com/blazkowolf/gruber-darker.nvim' }
+  vim.cmd.colorscheme("gruber-darker")
   -- vim.cmd.colorscheme 'ember'
-  vim.cmd.colorscheme 'midnight'
+  -- vim.cmd.colorscheme 'midnight'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
