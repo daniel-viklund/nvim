@@ -32,3 +32,13 @@ require('diffview').setup {}
 vim.keymap.set('n', '<leader>gd', '<cmd>DiffviewOpen<cr>', { desc = 'Diffview: open' })
 vim.keymap.set('n', '<leader>gh', '<cmd>DiffviewFileHistory %<cr>', { desc = 'Diffview: file history' })
 vim.keymap.set('n', '<leader>gc', '<cmd>DiffviewClose<cr>', { desc = 'Diffview: close' })
+
+local function set_diff_hl()
+  -- vim.api.nvim_set_hl(0, "DiffChange", {})                        -- no line-wide bg
+  vim.api.nvim_set_hl(0, "DiffText", { bg = "#775500", bold = true })  -- only the changed chars
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", { callback = set_diff_hl })
+set_diff_hl()
+
+vim.opt.diffopt:append("linematch:60")
