@@ -1,6 +1,6 @@
-vim.pack.add({
-    'https://github.com/nvim-lualine/lualine.nvim'
-})
+vim.pack.add {
+  'https://github.com/nvim-lualine/lualine.nvim',
+}
 
 require('lualine').setup {
   options = {
@@ -22,11 +22,18 @@ require('lualine').setup {
       winbar = 1000,
       refresh_time = 16,
       events = {
-        'WinEnter', 'BufEnter', 'BufWritePost', 'SessionLoadPost',
-        'FileChangedShellPost', 'VimResized', 'Filetype',
-        'CursorMoved', 'CursorMovedI', 'ModeChanged',
+        'WinEnter',
+        'BufEnter',
+        'BufWritePost',
+        'SessionLoadPost',
+        'FileChangedShellPost',
+        'VimResized',
+        'Filetype',
+        'CursorMoved',
+        'CursorMovedI',
+        'ModeChanged',
       },
-    }
+    },
   },
 
   -- bottom empty
@@ -42,6 +49,10 @@ require('lualine').setup {
     lualine_b = { 'branch', 'diff' },
     lualine_c = {
       { 'filename', path = 1 },
+      {
+        function() return require('nvim-navic').get_location() end,
+        cond = function() return require('nvim-navic').is_available() end,
+      },
       { 'diagnostics', sources = { 'nvim_lsp' } },
     },
     lualine_x = {
@@ -54,7 +65,7 @@ require('lualine').setup {
     lualine_y = { 'progress' },
     lualine_z = {
       'location',
-      { function() return os.date('%H:%M') end, icon = '' },
+      { function() return os.date '%H:%M' end, icon = '' },
     },
   },
 
@@ -64,7 +75,7 @@ require('lualine').setup {
     lualine_x = { 'location' },
   },
 
-  extensions = {}
+  extensions = {},
 }
 
 -- remove the empty bottom statusline bar
