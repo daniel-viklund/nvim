@@ -20,7 +20,10 @@ require('neo-tree').setup {
     use_libuv_file_watcher = true,
     window = {
       mappings = {
-        -- ['<leader>e'] = 'close_window',
+        ['<C-o>'] = function(state)
+          local node = state.tree:get_node()
+          os.execute('open -R "' .. node.path .. '"')
+        end,
       },
     },
   },
