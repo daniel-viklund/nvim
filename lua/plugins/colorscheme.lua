@@ -11,6 +11,8 @@
 vim.pack.add { 'https://github.com/ember-theme/nvim' }
 vim.pack.add { 'https://github.com/barrettruth/midnight.nvim' }
 vim.pack.add { 'https://github.com/blazkowolf/gruber-darker.nvim' }
-vim.cmd.colorscheme 'gruber-darker'
+vim.pack.add { 'https://github.com/ellisonleao/gruvbox.nvim' }
+require('gruvbox').setup()
+vim.cmd.colorscheme 'gruvbox'
 -- vim.cmd.colorscheme 'ember'
 -- vim.cmd.colorscheme 'midnight'
