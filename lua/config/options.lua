@@ -1,6 +1,8 @@
 -- [[ Core Neovim settings ]]
 -- Leaders, global flags, and editor options.
 
+vim.env.CC = "gcc"
+
 -- Enable faster startup by caching compiled Lua modules
 vim.loader.enable()
 
