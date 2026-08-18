@@ -15,6 +15,21 @@ vim.pack.add(plugins)
 
 vim.keymap.set('n', '<leader>e', '<Cmd>Neotree toggle<CR>', { desc = 'NeoTree toggle', silent = true })
 
+-- `use_libuv_file_watcher` below picks up external changes via OS file events
+-- (FSEvents on macOS). That does not work on network mounts / VM shared
+-- folders / iCloud-style paths, so as a fallback also refresh the tree
+-- whenever Neovim regains focus or a :terminal command finishes.
+vim.api.nvim_create_autocmd({ 'FocusGained', 'TermLeave', 'TermClose' }, {
+  group = vim.api.nvim_create_augroup('neotree-refresh', { clear = true }),
+  desc = 'Refresh neo-tree after external changes',
+  callback = function()
+    local ok, manager = pcall(require, 'neo-tree.sources.manager')
+    if ok then
+      manager.refresh 'filesystem' -- no-op when the tree window is not open
+    end
+  end,
+})
+
 require('neo-tree').setup {
   filesystem = {
     use_libuv_file_watcher = true,
