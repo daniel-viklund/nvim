@@ -48,9 +48,6 @@ local modules = {
   'treesitter',
   'debug',
 
-  -- AI
-  'copilotvim',
-
   -- Disabled examples (kept for reference; uncomment to enable)
   -- 'indent_line',
   -- 'lint',
