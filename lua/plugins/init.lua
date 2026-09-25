@@ -48,6 +48,9 @@ local modules = {
   'treesitter',
   'debug',
 
+  -- Navigation
+  'vim-tmux-navigator'
+
   -- Disabled examples (kept for reference; uncomment to enable)
   -- 'indent_line',
   -- 'lint',
